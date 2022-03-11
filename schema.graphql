@@ -31,6 +31,8 @@ type Langue {
    created_at:String
    active:String
    themesParLangue:[Theme]
+   sourcesScrapParLangue:[SourceScrap]
+   articlesScrapParLangue:[Article]
 }
 
 type Pays {
@@ -40,6 +42,7 @@ type Pays {
    flag:String
    active:String
    sourcesScrapParPays:[SourceScrap]
+   articlesScrapParPays:[Article]
 }
 
 type Source {
@@ -74,4 +77,5 @@ type Theme {
    created_at:String
    active:String
    langue:Langue
+   articlesParTheme:[Article]
 }
