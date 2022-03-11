@@ -1,0 +1,77 @@
+type Query {
+    articles:[Article],
+    langues:[Langue],
+    pays:[Pays],
+    sources:[Source],
+    sources_scrap:[SourceScrap],
+    themes:[Theme],
+}
+
+type Article {
+   id:ID!
+   token:String!
+   titre:String
+   subtitle:String
+   href:String
+   image:String
+   pays:String
+   date_published:String
+   token_source_scrap:String
+   tags:String
+   created_at:String
+   source_scrap:SourceScrap
+}
+
+type Langue {
+   id:ID!
+   token:String!
+   nom_fr:String
+   nom_eng:String
+   code_iso:String
+   created_at:String
+   active:String
+   themesParLangue:[Theme]
+}
+
+type Pays {
+   id:ID!
+   token:String!
+   nom:String
+   flag:String
+   active:String
+   sourcesScrapParPays:[SourceScrap]
+}
+
+type Source {
+   id:ID!
+   token:String!
+   nom:String
+   url:String
+   token_pays:String
+   token_langue:String
+   created_at:String
+   langue:Langue
+   pays:Pays
+}
+
+type SourceScrap {
+   id:ID!
+   token:String!
+   token_source:String
+   token_theme:String
+   url_scrap:String
+   created_at:String
+   active:String
+   source:Source
+   theme:Theme
+}
+
+type Theme {
+   id:ID!
+   token:String!
+   nom:String
+   code_langue:String
+   created_at:String
+   active:String
+   langue:Langue
+}
