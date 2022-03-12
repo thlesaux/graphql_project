@@ -32,19 +32,16 @@ const Langue = {
         })
     },
     articlesScrapParLangue: (root) => {
-        let sourcesScrapParLangue = db.sources_scrap.list().filter(function (item) {
-            const source = db.sources.list().find((source) =>
-                source.token === item.token_source
-            )
-            return source.token_langue === root.token
-        })
-
         return db.articles.list().filter(function (item) {
-            if (sourcesScrapParLangue.length > 0) {
-                return sourcesScrapParLangue.find((source_scrap) =>
-                    source_scrap.token === item.token_source_scrap
-                )?.token === item.token_source_scrap
-            }
+            const source_scrap = db.sources_scrap.list().find((source_scrap) =>
+                item.token_source_scrap === source_scrap.token
+            )
+
+            const source = db.sources.list().find((source) =>
+                source_scrap.token_source === source.token
+            )
+
+            return source.token_langue === root.token
         })
     }
 }
@@ -59,19 +56,16 @@ const Pays = {
         })
     },
     articlesScrapParPays: (root) => {
-        let sourcesScrapParPays = db.sources_scrap.list().filter(function (item) {
-            const source = db.sources.list().find((source) =>
-                source.token === item.token_source
-            )
-            return source.token_pays === root.token
-        })
-
         return db.articles.list().filter(function (item) {
-            if (sourcesScrapParPays.length > 0) {
-                return sourcesScrapParPays.find((source_scrap) =>
-                    source_scrap.token === item.token_source_scrap
-                )?.token === item.token_source_scrap
-            }
+            const source_scrap = db.sources_scrap.list().find((source_scrap) =>
+                item.token_source_scrap === source_scrap.token
+            )
+
+            const source = db.sources.list().find((source) =>
+                source_scrap.token_source === source.token
+            )
+
+            return source.token_pays === root.token
         })
     }
 }
@@ -109,16 +103,12 @@ const Theme = {
         })
     },
     articlesParTheme: (root) => {
-        const sourcesScrapParTheme = db.sources_scrap.list().filter(function (item) {
-            return item.token_theme === root.token
-        })
-
         return db.articles.list().filter(function (item) {
-            if (sourcesScrapParTheme.length > 0) {
-                return sourcesScrapParTheme.find((source_scrap) =>
-                    source_scrap.token === item.token_source_scrap
-                )?.token === item.token_source_scrap
-            }
+            const source_scrap = db.sources_scrap.list().find((source_scrap) =>
+                item.token_source_scrap === source_scrap.token
+            )
+
+            return source_scrap.token_theme === root.token
         })
     }
 }
